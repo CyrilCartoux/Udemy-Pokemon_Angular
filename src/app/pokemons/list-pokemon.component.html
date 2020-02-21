@@ -1,0 +1,28 @@
+<h1>{{ title }}</h1>
+
+<h1 class='center'>Mon Pokédex</h1>
+
+<div class='container'>
+	<div class="row">
+
+		<pokemon-search></pokemon-search>
+
+		<div *ngFor='let pokemon of pokemons' class="col s12 m6 l4">
+		  <div class="card horizontal" (click)="selectPokemon(pokemon)" pkmnBorderCard>
+		    <div class="card-image">
+		      <img [src]="pokemon.picture">
+		    </div>
+		    <div class="card-stacked">
+		      <div class="card-content">
+		        <p>{{ pokemon.name }}</p>
+		        <p><small>{{ pokemon.created | date:"dd/MM/yy" }}</small></p>
+		        <span *ngFor='let type of pokemon.types' class="{{type | pokemonTypeColor}}"> {{type}}</span>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+<h4 *ngIf='!pokemon' class="center">
+  <pkmn-loader></pkmn-loader>
+</h4>
